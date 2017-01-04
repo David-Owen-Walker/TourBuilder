@@ -15,7 +15,7 @@ class Api_Tour extends Omeka_Record_Api_AbstractRecordAdapter
         $db = get_db();
         
         $tiTable = $db->getTable( 'TourItem' );
-        $glTable = $db->getTable( 'Geolocation' );
+        $glTable = $db->getTable( 'Location' );
 
         $tiSelect = $tiTable->getSelect();
         $tiSelect->where( 'tour_id = ?', array( $record->id ) );
