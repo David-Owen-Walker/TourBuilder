@@ -6,7 +6,7 @@ require_once 'TourTable.php';
  * Tour
  * @package: Omeka
  */
-class Tour extends Omeka_Record_AbstractRecord
+class Tour extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_Interface
 {
 	public $title;
 	public $description;
@@ -18,6 +18,16 @@ class Tour extends Omeka_Record_AbstractRecord
 	public $tour_image;
 
 	protected $_related = array( 'Items' => 'getItems','Image' => 'getImage' );
+    
+    /**
+     * Identify Tour records as relating to the Tours ACL resource.
+     * 
+     * @return string
+     */
+    public function getResourceId()
+    {
+        return 'TourBuilder_Tours';
+    }
 
 	public function getItems()
 	{

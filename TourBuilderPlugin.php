@@ -8,6 +8,7 @@ if( !defined( 'TOURBUILDER_PLUGIN_DIR' ) )
 class TourBuilderPlugin extends Omeka_Plugin_AbstractPlugin
 {
 	protected $_filters = array(
+        'api_resources',
 		'public_navigation_main',
 		'admin_dashboard_stats',
 		'admin_navigation_main' );
@@ -166,6 +167,21 @@ class TourBuilderPlugin extends Omeka_Plugin_AbstractPlugin
 		queue_css_file('tour');
 	}
 
+	/**
+     * Register the tours API resource.
+     *
+     * @param array $apiResources to add to
+     * @return array the passed in array, with tours added
+     */
+    public function filterApiResources($apiResources)
+    {
+        $apiResources['tours'] = array(
+            'record_type' => 'Tour',
+            'actions' => array('get', 'index'),
+        );
+        return $apiResources;
+    }
+	
 	public function filterAdminNavigationMain( $nav )
 	{
 		$nav['Tours'] = array( 'label' => __('Tours'),
