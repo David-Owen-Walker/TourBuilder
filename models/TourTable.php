@@ -81,9 +81,9 @@ class TourTable extends Omeka_Db_Table
 			//check if this is the right way to get the geo table
 
 			$select->join(array( "ti"=>$db->TourItem),
-				"ti.ordinal = 0 AND ti.tour_id = " . $alias . ".id",array("item_id"));
+				"ti.ordinal = 0 AND ti.tour_id = " . $alias . ".id",array("item_id","ordinal","tour_id"));
 
-			$select->join(array("loc"=>$db->Location), "loc.id = ti.item_id",array("distance"=> $distance));
+			$select->join(array("loc"=>$db->Location), "loc.item_id = ti.item_id",array("distance"=> $distance));
 
 			$select->reset( Zend_Db_Select::ORDER );
 

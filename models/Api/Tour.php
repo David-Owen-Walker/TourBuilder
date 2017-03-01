@@ -51,7 +51,8 @@ class Api_Tour extends Omeka_Record_Api_AbstractRecordAdapter
             'postscript_text' => $record->postscript_text,
             'tour_image' => $record->tour_image,
             'items' => $items,
-            'start' => $startLocation
+            'start' => $startLocation,
+	    'debug' => $record
         );
         return $representation;
     }
