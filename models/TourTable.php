@@ -73,8 +73,9 @@ class TourTable extends Omeka_Db_Table
 
 			$latitude = $point->lat;
 			$longitude = $point->lng;
-			$dlat = "(loc.latitude - " . $latitude . ")";
-			$dlng = "(loc.longitude - " . $longitude . ")";
+			$dlat = "((loc.latitude - " . $latitude . "))";
+			$scale = cos(deg2rad($latitude));
+			$dlng = "((loc.longitude - " . $longitude . ")*".$scale.")";
 			$distance = "(" . $dlat . "*" . $dlat . " + " . $dlng . "*" . $dlng . ")";
 
 			$db = get_db();

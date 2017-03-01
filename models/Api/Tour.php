@@ -13,7 +13,7 @@ class Api_Tour extends Omeka_Record_Api_AbstractRecordAdapter
     {
 
         $db = get_db();
-        
+
         $tiTable = $db->getTable( 'TourItem' );
         $glTable = $db->getTable( 'Location' );
 
@@ -51,8 +51,7 @@ class Api_Tour extends Omeka_Record_Api_AbstractRecordAdapter
             'postscript_text' => $record->postscript_text,
             'tour_image' => $record->tour_image,
             'items' => $items,
-            'start' => $startLocation,
-	    'debug' => $record
+            'start' => $startLocation
         );
         return $representation;
     }
