@@ -62,5 +62,46 @@ class TourTable extends Omeka_Db_Table
 
 		return $select;
 	}
+	public function getSelectForFindBy($params = array())
+    	{
+        	// $params = apply_filters($this->_getHookName('browse_params'), $params);
+        	$select = $this->getSelect();
+        	// $sortParams = $this->_getSortParams($params);
+		if ($params["near"]) {
+			$alias = $this->getTableAlias();
+			$point = json_decode($params["near"]);
 
+			$latitude = $point->lat;
+			$longitude = $point->lng;
+			$dlat = "(loc.latitude - " . $latitude . ")";
+			$dlng = "(loc.longitude - " . $longitude . ")";
+			$distance = "(" . $dlat . "*" . $dlat . " + " . $dlng . "*" . $dlng . ")";
+
+			$db = get_db();
+			//check if this is the right way to get the geo table
+
+			$select->join(array( "ti"=>$db->TourItem),
+				"ti.ordinal = 0 AND ti.tour_id = " . $alias . ".id",array("item_id"));
+
+			$select->join(array("loc"=>$db->Location), "loc.id = ti.item_id",array("distance"=> $distance));
+
+			$select->reset( Zend_Db_Select::ORDER );
+
+			$select->order("distance");
+		}
+		elseif ($sortParams) {
+            		list($sortField, $sortDir) = $sortParams;
+            		$this->applySorting($select, $sortField, $sortDir);
+            		if ($select->getPart(Zend_Db_Select::ORDER)
+                		&& $sortField != 'id'
+            		) {
+                		$alias = $this->getTableAlias();
+                		$select->order("$alias.id $sortDir");
+            		}
+        	}
+        	$this->applySearchFilters($select, $params);
+        	//fire_plugin_hook($this->_getHookName('browse_sql'),
+        	//                 array('select' => $select, 'params' => $params));
+        	return $select;
+    	}
 }

@@ -22,12 +22,12 @@ class Api_Tour extends Omeka_Record_Api_AbstractRecordAdapter
 
         # Get the tour items
         $tourItems = $tiTable->fetchObjects( $tiSelect );
-        
+
         $glSelect = $glTable->getSelect();
         $glSelect->where( 'item_id = ?', array( $tourItems[0]->item_id ) );
         $geolocations = $glTable->fetchObjects( $glSelect );
         $startLocation = $geolocations[0];
-        
+
         #map tour items to items
         $generator = function($tourItem){
             $result = array(
@@ -50,7 +50,7 @@ class Api_Tour extends Omeka_Record_Api_AbstractRecordAdapter
             'slug' => $record->slug,
             'postscript_text' => $record->postscript_text,
             'tour_image' => $record->tour_image,
-            'items' => $items,
+            'items' => $tourItems,
             'start' => $startLocation
         );
         return $representation;

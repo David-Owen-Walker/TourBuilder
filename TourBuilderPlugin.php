@@ -178,6 +178,7 @@ class TourBuilderPlugin extends Omeka_Plugin_AbstractPlugin
         $apiResources['tours'] = array(
             'record_type' => 'Tour',
             'actions' => array('get', 'index'),
+            'index_params' => array('near')
         );
         return $apiResources;
     }
