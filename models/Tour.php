@@ -18,10 +18,10 @@ class Tour extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_Inte
 	public $tour_image;
 
 	protected $_related = array( 'Items' => 'getItems','Image' => 'getImage' );
-    
+
     /**
      * Identify Tour records as relating to the Tours ACL resource.
-     * 
+     *
      * @return string
      */
     public function getResourceId()
@@ -179,7 +179,7 @@ class Tour extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_Inte
 		if( strlen( $this->slug > 30 ) ) {
 			$this->addError( 'slug', 'Slug for a tour must be 30 characters or fewer.' );
 		}
-		
+
 		if( !empty($this->tour_image) && !is_array(getimagesize( $this->tour_image )) ){
 			$this->addError('tour_image','The text entered does not validate as an image URL.');
 		}
@@ -189,19 +189,19 @@ class Tour extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_Inte
 
 			// replace non letter or digits by -
 			$title = preg_replace('~[^\\pL\d]+~u', '-', $title);
-			
+
 			// trim
 			$title = trim($title, '-');
-			
+
 			// transliterate
 			$title = iconv('utf-8', 'us-ascii//TRANSLIT', $title);
-			
+
 			// lowercase
 			$title = strtolower($title);
-			
+
 			// remove unwanted characters
-			$title = preg_replace('~[^-\w]+~', '', $title);				
-				
+			$title = preg_replace('~[^-\w]+~', '', $title);
+
 				$this->slug= $title;
 			}else{
 				$this->addError( 'slug', 'Tour must be given a slug.' );

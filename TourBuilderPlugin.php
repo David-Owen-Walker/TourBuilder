@@ -8,7 +8,7 @@ if( !defined( 'TOURBUILDER_PLUGIN_DIR' ) )
 class TourBuilderPlugin extends Omeka_Plugin_AbstractPlugin
 {
 	protected $_filters = array(
-        'api_resources',
+	        'api_resources',
 		'public_navigation_main',
 		'admin_dashboard_stats',
 		'admin_navigation_main' );
@@ -68,27 +68,27 @@ class TourBuilderPlugin extends Omeka_Plugin_AbstractPlugin
         $oldVersion = $args['old_version'];
         $newVersion = $args['new_version'];
         $db = $this->_db;
-        
+
         if ($oldVersion < '1.4') {
-            
+
             $sql = "ALTER TABLE `$db->Tour` ADD COLUMN `postscript_text` text collate utf8_unicode_ci default NULL";
             $db->query($sql);
-            
+
             $sql = "ALTER TABLE `$db->Tour` ADD COLUMN `tour_image` text collate utf8_unicode_ci default NULL";
-            $db->query($sql);            	        
+            $db->query($sql);
 	    }
 	}
-	
+
 	public function hookDefineAcl( $args )
 	{
 		$acl = $args['acl'];
 
 		// Create the ACL context
 		$acl->addResource( 'TourBuilder_Tours' );
-		
+
 		// Allow anyone to look but not touch
 		$acl->allow( null, 'TourBuilder_Tours', array('browse', 'show') );
-		
+
 		// Allow contributor (and better) to do anything with tours
 		$acl->allow( 'contributor','TourBuilder_Tours');
 
@@ -168,7 +168,9 @@ class TourBuilderPlugin extends Omeka_Plugin_AbstractPlugin
 	}
 
 	/**
-     * Register the tours API resource.
+     * Register the tours API resource. The resource can be indexed using a "near"
+     * parameter. near is a lat/lng json object which, if provided, will sort
+     * tours according to how close they are to the point provided.
      *
      * @param array $apiResources to add to
      * @return array the passed in array, with tours added
@@ -182,7 +184,7 @@ class TourBuilderPlugin extends Omeka_Plugin_AbstractPlugin
         );
         return $apiResources;
     }
-	
+
 	public function filterAdminNavigationMain( $nav )
 	{
 		$nav['Tours'] = array( 'label' => __('Tours'),

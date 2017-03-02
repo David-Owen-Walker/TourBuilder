@@ -64,25 +64,23 @@ class TourTable extends Omeka_Db_Table
 	}
 	public function getSelectForFindBy($params = array())
     	{
-        	// $params = apply_filters($this->_getHookName('browse_params'), $params);
         	$select = $this->getSelect();
-        	// $sortParams = $this->_getSortParams($params);
 		if ($params["near"]) {
-			$alias = $this->getTableAlias();
+			// Build an expression that evaluates to the SQUARE of the distance from the given point
+			// Distance is measured in units of latitude (~111km) as though the earth were flat
 			$point = json_decode($params["near"]);
-
 			$latitude = $point->lat;
 			$longitude = $point->lng;
-			$dlat = "((loc.latitude - " . $latitude . "))";
+			$dlat = "(loc.latitude - " . $latitude . ")";
 			$scale = cos(deg2rad($latitude));
 			$dlng = "((loc.longitude - " . $longitude . ")*".$scale.")";
 			$distance = "(" . $dlat . "*" . $dlat . " + " . $dlng . "*" . $dlng . ")";
 
 			$db = get_db();
-			//check if this is the right way to get the geo table
-
+			$alias = $this->getTableAlias();
 			$select->join(array( "ti"=>$db->TourItem),
-				"ti.ordinal = 0 AND ti.tour_id = " . $alias . ".id",array("item_id","ordinal","tour_id"));
+				"ti.ordinal = 0 AND ti.tour_id = " . $alias . ".id",
+				array("item_id","ordinal","tour_id"));
 
 			$select->join(array("loc"=>$db->Location), "loc.item_id = ti.item_id",array("distance"=> $distance));
 
@@ -101,8 +99,6 @@ class TourTable extends Omeka_Db_Table
             		}
         	}
         	$this->applySearchFilters($select, $params);
-        	//fire_plugin_hook($this->_getHookName('browse_sql'),
-        	//                 array('select' => $select, 'params' => $params));
         	return $select;
     	}
 }
