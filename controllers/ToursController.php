@@ -112,12 +112,14 @@ class TourBuilder_ToursController extends Omeka_Controller_AbstractActionControl
 		# Get our POST of the saveOrder
 		$post = $this->getRequest()->getPost();
 		$aOrder = json_decode($post['saveOrder'],true);
+		$dOrder = json_decode($post['directions'],true);
 
 		# Iterate through all of the tour items
 		# passed in an add them to the tour
 		for($i = 0; $i < count($aOrder); $i++) {
 			$item_id = intval( $aOrder[$i] );
-			$tour->addItem( $item_id, $i );
+            $directions = $dOrder[$i];
+			$tour->addItem( $item_id, $i, $directions );
 		}
 	}
 

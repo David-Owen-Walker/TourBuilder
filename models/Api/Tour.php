@@ -29,7 +29,7 @@ class Api_Tour extends Omeka_Record_Api_AbstractRecordAdapter
         $startLocation = $geolocations[0];
 
         #map tour items to items
-        $generator = function($tourItem){
+        $itemGenerator = function($tourItem){
             $result = array(
                 'id' => $tourItem->item_id,
                 'url' => $this->getResourceUrl("/items/{$tourItem->item_id}"),
@@ -38,7 +38,15 @@ class Api_Tour extends Omeka_Record_Api_AbstractRecordAdapter
             return $result;
         };
 
-        $items = array_map($generator,$tourItems);
+        $items = array_map($itemGenerator,$tourItems);
+
+        # create an array of directions
+        $directionGenerator = function($tourItem){
+            $result = $tourItem->directions_to_item;
+            return $result;
+        };
+
+        $directions = array_map($directionGenerator,$tourItems);
 
         $representation = array(
             'id' => $record->id,

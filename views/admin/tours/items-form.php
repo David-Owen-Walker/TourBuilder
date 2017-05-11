@@ -22,6 +22,9 @@ $addItemUrl = $this->url(
         </th>
         <th scope="col">
         </th>
+        <th scope="col">
+          <?php echo __('Directions'); ?>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -62,6 +65,17 @@ $itemDelete = $this->url( array( 'action' => 'removeItem',
           <a class="delete" href="<?php echo $itemDelete; ?>" onClick="jQuery.removeItem(<?php echo $tourItem->id; ?>);return false;">
             <?php echo __('Remove'); ?>
           </a>
+        </td>
+
+        <td scope="row" id="td-<?php echo $tourItem->id; ?>-directions-cell">
+            <input class="directions"
+                   type="text"
+                   value="<?php echo $tourItem->directions_to_item; ?>"
+                   onChange="<?php $tourItem->directions_to_item = $_GET("td-".$tourItem->id."-directions-input"); ?>"
+                   id="td-<?php echo $tourItem->id; ?>-directions-input"
+                   method="get"
+                   directions="<?php echo $tourItem->directions_to_item; ?>"
+            />
         </td>
       </tr>
 
@@ -123,14 +137,23 @@ $itemDelete = $this->url( array( 'action' => 'removeItem',
             $("tr.orderable").each(function( index ) {
                 objsArray.push($(this).attr("item-id"));
             });
-            var _json = JSON.stringify(objsArray);
-            //alert(_json);
+            var _saveJson = JSON.stringify(objsArray);
+            
+            var dirsArray = [];
+            $("input.directions").each(function( index ) {
+                dirsArray.push($(this).attr("directions"));
+            });
+            var _dirsJson = JSON.stringify(dirsArray);
+            
+            
+            
             $("#form-data").hide();
             $.setH2("Saving Tour");
             $.setStatus("Please wait while the tour is being saved");
             $.ajax({
                 url: subURL,
-                data: {"saveOrder":_json},
+                data: {"saveOrder":_saveJson,
+                       "directions":_dirsJson},
                 type: "POST"
             }).done(function ( serverResponse ) {
                 $.formCanSubmit = true;
