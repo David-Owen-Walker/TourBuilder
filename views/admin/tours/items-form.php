@@ -6,7 +6,6 @@ $addItemUrl = $this->url(
 	'tourAction' );
 ?>
 <p id="save-notice">
-    <?php echo json_encode($tour); ?>
   <?php echo __('Press save to submit changes to the item list.'); ?>
 </p>
 
@@ -63,7 +62,7 @@ $itemDelete = $this->url( array( 'action' => 'removeItem',
         </td>
         
         <td scope="row" id="td-<?php echo $tourItem->id; ?>-directions-cell">
-            <input class="directions" type="text" value="<?php echo json_encode($tour); ?>" id="td-<?php echo $tourItem->id; ?>-directions-input" method="get"/>
+            <input class="directions" type="text" value="<?php echo $tourItem->directions_to_item; ?>" id="td-<?php echo $tourItem->id; ?>-directions-input" method="get"/>
         </td>
 
         <td scope="row" id="td-<?php echo $tourItem->id; ?>-cell">
