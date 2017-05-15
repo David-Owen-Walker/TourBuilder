@@ -136,7 +136,7 @@ $itemDelete = $this->url( array( 'action' => 'removeItem',
             
             var dirsArray = [];
             $("input.directions").each(function( index ) {
-                dirsArray.push($(this).val();
+                dirsArray.push($(this).val());
             });
             var _dirsJson = JSON.stringify(dirsArray);
             
