@@ -68,14 +68,9 @@ $itemDelete = $this->url( array( 'action' => 'removeItem',
         </td>
 
         <td scope="row" id="td-<?php echo $tourItem->id; ?>-directions-cell">
-            <input class="directions"
-                   type="text"
-                   value="<?php echo $tourItem->directions_to_item; ?>"
-                   onChange="<?php $tourItem->directions_to_item = $_GET("td-".$tourItem->id."-directions-input"); ?>"
-                   id="td-<?php echo $tourItem->id; ?>-directions-input"
-                   method="get"
-                   directions="<?php echo $tourItem->directions_to_item; ?>"
-            />
+          <a class="delete" href="<?php echo $itemDelete; ?>" onClick="jQuery.removeItem(<?php echo $tourItem->id; ?>);return false;">
+            <?php echo __('Remove'); ?>
+          </a>
         </td>
       </tr>
 
