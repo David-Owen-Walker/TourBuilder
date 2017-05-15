@@ -48,7 +48,7 @@ class TourBuilderPlugin extends Omeka_Plugin_AbstractPlugin
             `tour_id` INT( 10 ) UNSIGNED NOT NULL,
             `ordinal` INT NOT NULL,
             `item_id` INT( 10 ) UNSIGNED NOT NULL,
-            `directions_to_item` MEDIUMTEXT collate utf8_unicode_ci NOT NULL,
+            `directions_to_item` MEDIUMTEXT collate utf8_unicode_ci,
             PRIMARY KEY( `id` ),
             KEY `tour` ( `tour_id` )
          ) ENGINE=InnoDB ";
