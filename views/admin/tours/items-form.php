@@ -62,7 +62,7 @@ $itemDelete = $this->url( array( 'action' => 'removeItem',
         </td>
         
         <td scope="row" id="td-<?php echo $tourItem->id; ?>-directions-cell">
-            <input class="directions" type="text" value="<?php echo $tourItem->directions_to_item; ?>" id="td-<?php echo $tourItem->id; ?>-directions-input" method="get"/>
+            <textarea class="directions" type="text" value="<?php echo $tourItem->directions_to_item; ?>" id="td-<?php echo $tourItem->id; ?>-directions-input" method="get"></textarea>
         </td>
 
         <td scope="row" id="td-<?php echo $tourItem->id; ?>-cell">
