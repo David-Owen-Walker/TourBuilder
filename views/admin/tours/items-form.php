@@ -60,18 +60,16 @@ $itemDelete = $this->url( array( 'action' => 'removeItem',
             <?php echo metadata( $tourItem, array( 'Dublin Core', 'Title' ) ); ?>
           </a>
         </td>
+        
+        <td scope="row" id="td-<?php echo $tourItem->id; ?>-directions-cell">
+            <input class="directions" type="text" value="<?php echo $tourItem->id; ?>" id="td-<?php echo $tourItem->id; ?>-directions-input" method="get"/>
+        </td>
 
         <td scope="row" id="td-<?php echo $tourItem->id; ?>-cell">
           <a class="delete" href="<?php echo $itemDelete; ?>" onClick="jQuery.removeItem(<?php echo $tourItem->id; ?>);return false;">
             <?php echo __('Remove'); ?>
           </a>
         </td>
-
-        
-        <td scope="row" id="td-<?php echo $tourItem->id; ?>-directions-cell">
-            <input class="directions" type="text" value="<?php echo $tourItem->directions_to_item; ?>" id="td-<?php echo $tourItem->id; ?>-directions-input" method="get"/>
-        </td>
-
       </tr>
 
 
