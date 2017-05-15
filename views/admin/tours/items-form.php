@@ -62,7 +62,7 @@ $itemDelete = $this->url( array( 'action' => 'removeItem',
         </td>
         
         <td scope="row" id="td-<?php echo $tourItem->id; ?>-directions-cell">
-            <input class="directions" type="text" value="<?php echo json_encode($tourItem); ?>" id="td-<?php echo $tourItem->id; ?>-directions-input" method="get"/>
+            <input class="directions" type="text" value="<?php echo json_encode($tour); ?>" id="td-<?php echo $tourItem->id; ?>-directions-input" method="get"/>
         </td>
 
         <td scope="row" id="td-<?php echo $tourItem->id; ?>-cell">
