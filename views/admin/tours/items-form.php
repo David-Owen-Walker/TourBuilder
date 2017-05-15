@@ -6,6 +6,7 @@ $addItemUrl = $this->url(
 	'tourAction' );
 ?>
 <p id="save-notice">
+    <?php echo json_encode($tour); ?>
   <?php echo __('Press save to submit changes to the item list.'); ?>
 </p>
 
