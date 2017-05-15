@@ -21,9 +21,9 @@ $addItemUrl = $this->url(
           <?php echo __('Title'); ?>
         </th>
         <th scope="col">
+          <?php echo __('Directions'); ?>
         </th>
         <th scope="col">
-          <?php echo __('Directions'); ?>
         </th>
       </tr>
     </thead>
@@ -62,7 +62,7 @@ $itemDelete = $this->url( array( 'action' => 'removeItem',
         </td>
         
         <td scope="row" id="td-<?php echo $tourItem->id; ?>-directions-cell">
-            <textarea class="directions" type="text" id="td-<?php echo $tourItem->id; ?>-directions-input" method="get"><?php echo $tourItem->directions_to_item; ?></textarea>
+            <textarea class="directions" placeholder="Add directions to get to this item" id="td-<?php echo $tourItem->id; ?>-directions-input" method="get"><?php echo $tourItem->directions_to_item; ?></textarea>
         </td>
 
         <td scope="row" id="td-<?php echo $tourItem->id; ?>-cell">
