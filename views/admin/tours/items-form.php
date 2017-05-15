@@ -62,11 +62,7 @@ $itemDelete = $this->url( array( 'action' => 'removeItem',
         </td>
         
         <td scope="row" id="td-<?php echo $tourItem->id; ?>-directions-cell">
-            <textarea class="directions" type="text" id="td-<?php echo $tourItem->id; ?>-directions-input" method="get">
-            
-                <?php echo $tourItem->directions_to_item; ?>
-            
-            </textarea>
+            <textarea class="directions" type="text" id="td-<?php echo $tourItem->id; ?>-directions-input" method="get"><?php echo $tourItem->directions_to_item; ?></textarea>
         </td>
 
         <td scope="row" id="td-<?php echo $tourItem->id; ?>-cell">
@@ -137,7 +133,7 @@ $itemDelete = $this->url( array( 'action' => 'removeItem',
             var _saveJson = JSON.stringify(objsArray);
             
             var dirsArray = [];
-            $("input.directions").each(function( index ) {
+            $("textarea.directions").each(function( index ) {
                 dirsArray.push($(this).val());
             });
             var _dirsJson = JSON.stringify(dirsArray);
