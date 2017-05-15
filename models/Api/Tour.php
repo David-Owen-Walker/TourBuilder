@@ -33,20 +33,13 @@ class Api_Tour extends Omeka_Record_Api_AbstractRecordAdapter
             $result = array(
                 'id' => $tourItem->item_id,
                 'url' => $this->getResourceUrl("/items/{$tourItem->item_id}"),
-                'resource' => 'items'
+                'resource' => 'items',
+                'directions' => $tourItem->directions_to_item
             );
             return $result;
         };
 
         $items = array_map($itemGenerator,$tourItems);
-
-        # create an array of directions
-        $directionGenerator = function($tourItem){
-            $result = $tourItem->directions_to_item;
-            return $result;
-        };
-
-        $directions = array_map($directionGenerator,$tourItems);
 
         $representation = array(
             'id' => $record->id,
