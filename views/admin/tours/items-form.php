@@ -6,10 +6,9 @@ $addItemUrl = $this->url(
 	'tourAction' );
 ?>
 <p id="save-notice">
-  <?php echo __('Press save to submit changes to the item list.'); ?>
-  <?php echo __('You can add directions to landmarks in the Tour once they have been added. Simply fill out the text field and click save'); ?>
-    
-  <?php echo __('To add audio for directions to the item, paste the url into the text field and click save.'); ?>
+  <?php echo __('Press save to submit changes to the item list.\n'); ?>
+  <?php echo __('You can add directions to landmarks in the Tour after the landmarks have been added. Simply fill out the text field and click save.\n'); ?>
+  <?php echo __('To add audio for directions to the item, paste the url into the text field and click save.\n'); ?>
   <?php echo __("While you can use any url you want, we highly reccomend using one from this website. To add a file without having it appear anywhere it shouldn't, attach it to a private item. Be sure to delete the file if you're not using it anymore."); ?>
 </p>
 
