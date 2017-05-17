@@ -7,12 +7,6 @@ echo flash();
 
 <form method="post" enctype="multipart/form-data" id="tour-form" action="">
   <?php include( 'form.php' ); ?>
-  <sectionclass="three columns omega">
-    <div id="save" class="panel">
-      <?php echo $this->formSubmit( 'submit', __('Add Tour'),
-	array( 'id' => 'save-changes',
-		'class' => 'submit big green button' ) ); ?>
-    </div>
 
     <div id="public-featured">
       <?php if( is_allowed( 'TourBuilder_Tours', 'makePublic' ) ): ?>
@@ -39,6 +33,12 @@ echo flash();
       </div>
       <?php endif; ?>
 
+    </div>
+  <section>
+    <div id="save" class="panel">
+      <?php echo $this->formSubmit( 'submit', __('Add Tour'),
+	array( 'id' => 'save-changes',
+		'class' => 'submit big green button' ) ); ?>
     </div>
 
   </section>

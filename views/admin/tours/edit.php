@@ -17,18 +17,6 @@ echo flash();
   <?php include "form.php" ?>
 
   <section id="tour-editor-control-panel">
-	<div id="save" class="panel">
-	  <?php echo $this->formSubmit( 'submit', __('Save Changes'),
-	array( 'id' => 'save-changes',
-		'class' => 'submit big green button' ) ); ?>
-      <a href="<?php echo html_escape( public_url( 'tours/show/' . $tour->id ) ); ?>"
-         class="big blue button" target="_blank">
-        <?php echo __('View Public Page'); ?>
-      </a>
-      <?php echo link_to_tour( __('Delete'),
-	array( 'class' => 'delete-confirm big red button' ),
-	'delete-confirm' ); ?>
-    </div>
 
 
 
@@ -61,6 +49,18 @@ echo flash();
       <?php endif; ?>
 
 
+    </div>
+	<div id="save" class="panel">
+	  <?php echo $this->formSubmit( 'submit', __('Save Changes'),
+	array( 'id' => 'save-changes',
+		'class' => 'submit big green button' ) ); ?>
+      <a href="<?php echo html_escape( public_url( 'tours/show/' . $tour->id ) ); ?>"
+         class="big blue button" target="_blank">
+        <?php echo __('View Public Page'); ?>
+      </a>
+      <?php echo link_to_tour( __('Delete'),
+	array( 'class' => 'delete-confirm big red button' ),
+	'delete-confirm' ); ?>
     </div>
     
     <?php //if($tour->hasImage('square_thumbnails')) {echo $tour->square_thumbnail();} ?>
