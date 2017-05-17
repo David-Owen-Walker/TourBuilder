@@ -85,7 +85,7 @@ class Tour extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_Inte
 
 	}
 
-	public function addItem( $item_id, $ordinal = null, $directions = null )
+	public function addItem( $item_id, $ordinal = null, $directions = null, $directionsUrl = null )
 	{
 		if( !is_numeric( $item_id ) ) {
 			$item_id = $item_id->id;
@@ -106,6 +106,7 @@ class Tour extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_Inte
 		$tourItem->item_id = $item_id;
 		$tourItem->ordinal = $ordinal;
         $tourItem->directions_to_item = $directions;
+        $tourItem->directions_to_item_url = $directionsUrl;
 		$tourItem->save();
 	}
 

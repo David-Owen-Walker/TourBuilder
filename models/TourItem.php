@@ -9,6 +9,7 @@ class TourItem extends Omeka_Record_AbstractRecord
 	public $tour_id;
 	public $item_id;
     public $directions_to_item;
+    public $directions_to_item_url;
 	public $ordinal = 0;
 
 	protected $_related = array(

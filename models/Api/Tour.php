@@ -34,7 +34,8 @@ class Api_Tour extends Omeka_Record_Api_AbstractRecordAdapter
                 'id' => $tourItem->item_id,
                 'url' => $this->getResourceUrl("/items/{$tourItem->item_id}"),
                 'resource' => 'items',
-                'directions' => $tourItem->directions_to_item
+                'directions' => $tourItem->directions_to_item,
+                'directions_url' => $tourItem->directions_to_item_url
             );
             return $result;
         };

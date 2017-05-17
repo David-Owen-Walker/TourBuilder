@@ -24,6 +24,9 @@ $addItemUrl = $this->url(
           <?php echo __('Directions'); ?>
         </th>
         <th scope="col">
+          <?php echo __('Directions audio'); ?>
+        </th>
+        <th scope="col">
         </th>
       </tr>
     </thead>
@@ -63,6 +66,10 @@ $itemDelete = $this->url( array( 'action' => 'removeItem',
         
         <td scope="row" id="td-<?php echo $tourItem->id; ?>-directions-cell">
             <textarea class="directions" placeholder="Add directions to get to this item" id="td-<?php echo $tourItem->id; ?>-directions-input" method="get"><?php echo $tourItem->directions_to_item; ?></textarea>
+        </td>
+        
+        <td scope="row" id="td-<?php echo $tourItem->id; ?>-directions-url-cell">
+            <textarea class="directions-url" placeholder="paste in a url for the audio directions" id="td-<?php echo $tourItem->id; ?>-directions-url-input" method="get"><?php echo $tourItem->directions_to_item_url; ?></textarea>
         </td>
 
         <td scope="row" id="td-<?php echo $tourItem->id; ?>-cell">
@@ -136,7 +143,13 @@ $itemDelete = $this->url( array( 'action' => 'removeItem',
             $("textarea.directions").each(function( index ) {
                 dirsArray.push($(this).val());
             });
+            
+            var urlsArray = [];
+            $("textarea.directions-url").each(function( index ) {
+                urlsArray.push($(this).val());
+            });
             var _dirsJson = JSON.stringify(dirsArray);
+            var _urlsJson = JSON.stringify(urlsArray);
             
             
             
@@ -146,7 +159,8 @@ $itemDelete = $this->url( array( 'action' => 'removeItem',
             $.ajax({
                 url: subURL,
                 data: {"saveOrder":_saveJson,
-                       "directions":_dirsJson},
+                       "directions":_dirsJson,
+                      "urls":_urlsJson},
                 type: "POST"
             }).done(function ( serverResponse ) {
                 $.formCanSubmit = true;
