@@ -7,7 +7,7 @@ echo flash();
 
 <form method="post" enctype="multipart/form-data" id="tour-form" action="">
   <?php include( 'form.php' ); ?>
-  <section class="three columns omega">
+  <sectionclass="three columns omega">
     <div id="save" class="panel">
       <?php echo $this->formSubmit( 'submit', __('Add Tour'),
 	array( 'id' => 'save-changes',

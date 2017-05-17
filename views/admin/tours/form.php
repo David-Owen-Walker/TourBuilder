@@ -29,7 +29,7 @@ jQuery(document).bind('omeka:elementformload', function (event) {
 //]]>
 </script>
 
-<section class="seven columns alpha" id="edit-form">
+<section class="ten columns alpha" id="edit-form">
   <?php echo flash(); ?>
 
   <div id="tour-metadata">

@@ -1,4 +1,4 @@
-<div class="seven columns alpha" id="form-data">
+<div class="ten columns alpha" id="form-data">
 
  <fieldset>
    <div class="field">
